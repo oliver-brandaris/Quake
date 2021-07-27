@@ -1511,29 +1511,7 @@ qboolean VID_Is8bit() {
 
 void VID_Init8bitPalette() 
 {
-	// Check for 8bit Extensions and initialize them.
-	int i;
-	char thePalette[256*3];
-	char *oldPalette, *newPalette;
-
-	glColorTableEXT = (void *)wglGetProcAddress("glColorTableEXT");
-    if (!glColorTableEXT || strstr(gl_extensions, "GL_EXT_shared_texture_palette") ||
-		COM_CheckParm("-no8bit"))
-		return;
-
-	Con_SafePrintf("8-bit GL extensions enabled.\n");
-    glEnable( GL_SHARED_TEXTURE_PALETTE_EXT );
-	oldPalette = (char *) d_8to24table; //d_8to24table3dfx;
-	newPalette = thePalette;
-	for (i=0;i<256;i++) {
-		*newPalette++ = *oldPalette++;
-		*newPalette++ = *oldPalette++;
-		*newPalette++ = *oldPalette++;
-		oldPalette++;
-	}
-	glColorTableEXT(GL_SHARED_TEXTURE_PALETTE_EXT, GL_RGB, 256, GL_RGB, GL_UNSIGNED_BYTE,
-		(void *) thePalette);
-	is8bit = TRUE;
+	return;
 }
 
 static void Check_Gamma (unsigned char *pal)
